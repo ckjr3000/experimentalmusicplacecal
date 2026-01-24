@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="{{language}}">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="{{description}}" />
+    <meta name="generator" content="plaparsi" />
+    <title>{{title}}</title>
+    <style>
+      {{{styles}}}
+    </style>
+  </head>
+  <body>
+    <a href="#main" class="skip-link">Skip to main content</a>
+
+    <header class="header">
+      <div class="header__inner">
+        {{#logo}}
+        <img src="{{logo}}" alt="" class="header__logo" />
+        {{/logo}}
+        <div class="header__text">
+          <h1 class="header__title">{{partnerName}}</h1>
+          {{#summary}}
+          <p class="header__summary">{{summary}}</p>
+          {{/summary}} {{#socialLinks}}
+          <nav aria-label="Social links">
+            <ul class="social-links">
+              {{#links}}
+              <li>{{.}}</li>
+              {{/links}}
+            </ul>
+          </nav>
+          {{/socialLinks}}
+        </div>
+      </div>
+    </header>
+
+    <main id="main" class="main">
+      {{#about}}
+      <section class="about">
+        <h2 class="about__title">About</h2>
+        <div class="about__content">{{{about}}}</div>
+      </section>
+      {{/about}}
+
+      <section class="events">
+        <h2 class="events__title">Upcoming Events</h2>
+        {{#hasEvents}}
+        <ul class="events__list">
+          {{#events}}
+          <li class="event">
+            <article class="event__inner">
+              <h3 class="event__title">{{name}}</h3>
+              <p class="event__time">
+                <time datetime="{{startDate}}">{{startDateFormatted}}</time>
+                {{#hasEndTime}} -
+                <time datetime="{{endDate}}">{{endTimeFormatted}}</time
+                >{{/hasEndTime}}
+              </p>
+              {{#summary}}
+              <p class="event__summary">{{summary}}</p>
+              {{/summary}} {{#location}}
+              <p class="event__location">{{location}}</p>
+              {{/location}} {{#publisherUrl}}
+              <p class="event__link">
+                <a href="{{publisherUrl}}">More details</a>
+              </p>
+              {{/publisherUrl}}
+            </article>
+          </li>
+          {{/events}}
+        </ul>
+        {{/hasEvents}} {{^hasEvents}}
+        <p class="events__empty">
+          No upcoming events at the moment. Check back soon!
+        </p>
+        {{/hasEvents}}
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p class="footer__text">
+        Data from <a href="https://placecal.org">PlaceCal</a>. Last updated:
+        <time datetime="{{buildDate}}">{{buildDateFormatted}}</time>
+      </p>
+      {{#partnerUrl}}
+      <p class="footer__links">
+        <a href="{{partnerUrl}}">Visit {{partnerName}}</a>
+      </p>
+      {{/partnerUrl}}
+      <p class="footer__text">
+        Icons by <a href="https://lucide.dev">Lucide</a>
+      </p>
+    </footer>
+  </body>
+</html>
