@@ -101,13 +101,18 @@ a:hover {
 }
 
 .header__logo {
+  max-height: 8rem;
   width: auto;
   object-fit: contain;
+  align-self: center;
 }
 
 .header__text {
   flex: 1;
   min-width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .header__title {
