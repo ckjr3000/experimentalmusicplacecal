@@ -186,6 +186,8 @@ export function generateHTML(partner, events, siteConfig) {
     links.push(socialLink(partner.facebookUrl, "facebook", "Facebook"));
   if (partner.twitterUrl)
     links.push(socialLink(partner.twitterUrl, "twitter", "Twitter"));
+  if (partner.contact?.email)
+    links.push(socialLink(`mailto:${partner.contact.email}`, "email", "Email"));
 
   // Format events for template
   const formattedEvents = events.map((event) => {
