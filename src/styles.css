@@ -224,7 +224,7 @@ a:hover {
 }
 
 .about__title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   margin: 0 0 1rem;
   color: var(--color-text);
@@ -251,7 +251,7 @@ a:hover {
 }
 
 .events__title {
-  font-size: 1.5rem;
+  font-size: 1.75rem;
   font-weight: 600;
   margin: 0 0 1.25rem;
   color: var(--color-text);
@@ -289,9 +289,9 @@ a:hover {
 }
 
 .event__title {
-  font-size: 1.1rem;
+  font-size: 1.25rem;
   font-weight: 600;
-  margin: 0 0 0.25rem;
+  margin: 0 0 0.5rem;
   color: var(--color-text);
 }
 

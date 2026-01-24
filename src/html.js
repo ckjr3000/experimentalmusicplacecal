@@ -83,13 +83,34 @@ function formatDate(dateStr) {
 function formatTime(dateStr) {
   const date = new Date(dateStr);
   return date.toLocaleTimeString("en-GB", {
-    hour: "2-digit",
+    hour: "numeric",
     minute: "2-digit",
   });
 }
 
-function formatDateTime(dateStr) {
-  return `${formatDate(dateStr)} at ${formatTime(dateStr)}`;
+function formatDateShort(dateStr) {
+  const date = new Date(dateStr);
+  return date.toLocaleDateString("en-GB", {
+    weekday: "short",
+    day: "numeric",
+    month: "short",
+  });
+}
+
+function formatEventTime(startDate, endDate) {
+  const start = new Date(startDate);
+  const end = endDate ? new Date(endDate) : null;
+
+  const dateStr = formatDateShort(startDate);
+  const startTime = formatTime(startDate);
+
+  // If same day and has end time
+  if (end && start.toDateString() === end.toDateString()) {
+    const endTime = formatTime(endDate);
+    return `${dateStr} · ${startTime} – ${endTime}`;
+  }
+
+  return `${dateStr} · ${startTime}`;
 }
 
 function formatAddress(address) {
@@ -194,18 +215,10 @@ export function generateHTML(partner, events, siteConfig) {
 
   // Format events for template
   const formattedEvents = events.map((event) => {
-    const hasEndTime =
-      event.endDate &&
-      new Date(event.endDate).toDateString() ===
-        new Date(event.startDate).toDateString();
-
     return {
       name: event.name,
       startDate: event.startDate,
-      startDateFormatted: formatDateTime(event.startDate),
-      endDate: event.endDate,
-      endTimeFormatted: hasEndTime ? formatTime(event.endDate) : "",
-      hasEndTime,
+      timeFormatted: formatEventTime(event.startDate, event.endDate),
       summary:
         event.summary && event.summary !== event.name ? event.summary : "",
       description: event.description ? simpleMarkdown(event.description) : "",
