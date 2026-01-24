@@ -6,6 +6,25 @@
     <meta name="description" content="{{description}}" />
     <meta name="generator" content="plaparsi" />
     <title>{{title}}</title>
+
+    <!-- Open Graph -->
+    <meta property="og:title" content="{{title}}" />
+    <meta property="og:description" content="{{description}}" />
+    <meta property="og:type" content="website" />
+    {{#logo}}
+    <meta property="og:image" content="{{logo}}" />
+    {{/logo}} {{#partnerUrl}}
+    <meta property="og:url" content="{{partnerUrl}}" />
+    {{/partnerUrl}}
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="{{title}}" />
+    <meta name="twitter:description" content="{{description}}" />
+    {{#logo}}
+    <meta name="twitter:image" content="{{logo}}" />
+    {{/logo}}
+
     <style>
       {{{styles}}}
     </style>
