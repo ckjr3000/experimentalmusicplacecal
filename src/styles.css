@@ -8,24 +8,58 @@
    ========================================================================== */
 
 :root {
-  /* Text colours */
+  /* Light theme (default) */
   --color-text: #1a1a1a;
   --color-text-muted: #555;
   --color-text-subtle: #666;
 
-  /* Background colours */
   --color-bg: #fafafa;
   --color-bg-header: #2c2c2c;
   --color-bg-footer: #eee;
 
-  /* Link colours */
   --color-link: #0066cc;
   --color-link-hover: #004499;
 
-  /* Border colours */
   --color-border: #ddd;
 
-  /* Header text (on dark background) */
+  --color-header-text: #fff;
+}
+
+/* Dark theme - follows system preference */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --color-text: #e8e8e8;
+    --color-text-muted: #aaa;
+    --color-text-subtle: #888;
+
+    --color-bg: #1a1a1a;
+    --color-bg-header: #111;
+    --color-bg-footer: #222;
+
+    --color-link: #6db3f2;
+    --color-link-hover: #9dcbf7;
+
+    --color-border: #333;
+
+    --color-header-text: #fff;
+  }
+}
+
+/* Manual dark theme override */
+:root[data-theme="dark"] {
+  --color-text: #e8e8e8;
+  --color-text-muted: #aaa;
+  --color-text-subtle: #888;
+
+  --color-bg: #1a1a1a;
+  --color-bg-header: #111;
+  --color-bg-footer: #222;
+
+  --color-link: #6db3f2;
+  --color-link-hover: #9dcbf7;
+
+  --color-border: #333;
+
   --color-header-text: #fff;
 }
 
@@ -303,6 +337,72 @@ a:hover {
 .footer__links {
   margin: 0;
   font-size: 0.875rem;
+}
+
+/* ==========================================================================
+   Theme Toggle
+   ========================================================================== */
+
+.theme-toggle {
+  position: fixed;
+  bottom: 1rem;
+  right: 1rem;
+  background: var(--color-bg-header);
+  color: var(--color-header-text);
+  border: none;
+  border-radius: 50%;
+  width: 2.5rem;
+  height: 2.5rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.15s ease;
+  z-index: 50;
+}
+
+.theme-toggle:hover {
+  transform: scale(1.1);
+}
+
+.theme-toggle svg {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.theme-toggle__icon--light,
+.theme-toggle__icon--dark {
+  display: none;
+}
+
+/* Show sun icon in dark mode (click to go light) */
+:root[data-theme="dark"] .theme-toggle__icon--light,
+:root:not([data-theme="light"]) .theme-toggle__icon--light {
+  display: block;
+}
+
+:root[data-theme="light"] .theme-toggle__icon--dark,
+:root:not([data-theme]) .theme-toggle__icon--dark {
+  display: block;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle__icon--dark {
+    display: none;
+  }
+  :root:not([data-theme="light"]) .theme-toggle__icon--light {
+    display: block;
+  }
+}
+
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) .theme-toggle__icon--light {
+    display: none;
+  }
+  :root:not([data-theme="dark"]) .theme-toggle__icon--dark {
+    display: block;
+  }
 }
 
 /* ==========================================================================
