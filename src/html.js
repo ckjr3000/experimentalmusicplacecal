@@ -10,9 +10,10 @@ import { getIcon } from "./icons.js";
 
 const __dirname = dirname(fileURLToPath(import.meta.url));
 
-// Load template and styles once
+// Load template, styles, and scripts once
 const template = readFileSync(join(__dirname, "template.html"), "utf-8");
 const styles = readFileSync(join(__dirname, "styles.css"), "utf-8");
+const themeScript = readFileSync(join(__dirname, "theme.js"), "utf-8");
 
 /**
  * Simple Mustache-style template renderer
@@ -256,6 +257,11 @@ export function generateHTML(partner, events, siteConfig) {
     // Build info
     buildDate,
     buildDateFormatted: formatDate(buildDate),
+
+    // Theme toggle
+    iconMoon: getIcon("moon"),
+    iconSun: getIcon("sun"),
+    themeScript,
   };
 
   return render(template, data);
