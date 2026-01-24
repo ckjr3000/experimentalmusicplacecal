@@ -218,6 +218,7 @@ export function generateHTML(partner, events, siteConfig) {
     styles,
 
     // Partner info
+    partnerId: partner.id,
     partnerName: partner.name,
     partnerUrl: partner.url,
     logo: partner.logo,
