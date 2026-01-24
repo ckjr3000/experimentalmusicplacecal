@@ -145,6 +145,7 @@ export function generateHTML(partner, events, siteConfig) {
       hasEndTime,
       summary:
         event.summary && event.summary !== event.name ? event.summary : "",
+      description: event.description || "",
       location: formatAddress(event.address),
       publisherUrl: event.publisherUrl,
     };
