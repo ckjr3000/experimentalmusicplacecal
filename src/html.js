@@ -104,11 +104,69 @@ function formatAddress(address) {
 
 function simpleMarkdown(text) {
   if (!text) return "";
-  return escapeHTML(text)
-    .replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2">$1</a>')
+
+  // Collect links to replace later with null-byte delimited placeholders
+  const links = [];
+  const placeholder = (url, linkText) => {
+    const idx = links.length;
+    links.push({ url, text: linkText });
+    return `\x00${idx}\x00`;
+  };
+
+  // Extract reference-style link definitions [1]: url
+  const refs = {};
+  let processed = text.replace(/^\[(\d+)\]:\s*(.+)$/gm, (_, id, url) => {
+    refs[id] = url.trim();
+    return "";
+  });
+
+  // Remove separator lines (with optional surrounding whitespace)
+  processed = processed.replace(/^\s*---+\s*$/gm, "");
+
+  // Reference links [text][1] - process first to capture before URL regex
+  processed = processed.replace(/\[([^\]]+)\]\[(\d+)\]/g, (_, linkText, id) => {
+    const url = refs[id];
+    return url ? placeholder(url, linkText) : linkText;
+  });
+
+  // Inline links [text](url)
+  processed = processed.replace(
+    /\[([^\]]+)\]\(([^)]+)\)/g,
+    (_, linkText, url) => {
+      return placeholder(url, linkText);
+    },
+  );
+
+  // Plain URLs (not inside placeholders - \x00 marks placeholder boundaries)
+  processed = processed.replace(
+    /(?<!\x00)(https?:\/\/[^\s<>\[\]\x00]+)/g,
+    (url) => {
+      return placeholder(url, url);
+    },
+  );
+
+  // Escape the text (placeholders use \x00 which won't be affected)
+  processed = escapeHTML(processed);
+
+  // Restore links from placeholders
+  processed = processed.replace(/\x00(\d+)\x00/g, (_, idx) => {
+    const link = links[parseInt(idx)];
+    return `<a href="${escapeHTML(link.url)}">${escapeHTML(link.text)}</a>`;
+  });
+
+  // Line breaks
+  processed = processed
     .replace(/\r\n/g, "\n")
     .replace(/\n\n+/g, "</p><p>")
     .replace(/\n/g, "<br>");
+
+  // Clean up empty paragraphs
+  processed = processed.replace(/<br>\s*<br>/g, "</p><p>");
+  processed = processed.replace(/<p>\s*<\/p>/g, "");
+  processed = processed.replace(/^\s*<\/p>/g, "");
+  processed = processed.replace(/<p>\s*$/g, "");
+
+  return processed.trim();
 }
 
 function socialLink(url, type, label) {
@@ -145,7 +203,7 @@ export function generateHTML(partner, events, siteConfig) {
       hasEndTime,
       summary:
         event.summary && event.summary !== event.name ? event.summary : "",
-      description: event.description || "",
+      description: event.description ? simpleMarkdown(event.description) : "",
       location: formatAddress(event.address),
       publisherUrl: event.publisherUrl,
     };
