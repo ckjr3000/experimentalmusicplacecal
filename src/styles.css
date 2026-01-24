@@ -18,8 +18,8 @@
   --color-bg-header: #2c2c2c;
   --color-bg-footer: #eee;
 
-  --color-link: #0066cc;
-  --color-link-hover: #004499;
+  --color-link: #ea5b0d;
+  --color-link-hover: #c94a0a;
 
   --color-border: #ddd;
 
@@ -35,8 +35,8 @@
   --dark-color-bg-header: #111;
   --dark-color-bg-footer: #222;
 
-  --dark-color-link: #6db3f2;
-  --dark-color-link-hover: #9dcbf7;
+  --dark-color-link: #f4874d;
+  --dark-color-link-hover: #f9a576;
 
   --dark-color-border: #333;
 }
