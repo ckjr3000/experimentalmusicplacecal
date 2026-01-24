@@ -105,6 +105,9 @@ function formatAddress(address) {
 function simpleMarkdown(text) {
   if (!text) return "";
 
+  // Unescape backslash-escaped quotes from API data
+  text = text.replace(/\\'/g, "'").replace(/\\"/g, '"');
+
   // Collect links to replace later with null-byte delimited placeholders
   const links = [];
   const placeholder = (url, linkText) => {
