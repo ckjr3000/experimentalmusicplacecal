@@ -1,112 +1,67 @@
-/**
- * PlaceCal Partner Site Styles
- * Using BEM naming convention
- */
-
-/* ==========================================================================
-   Colour Variables - Edit these to customise your site
-   ========================================================================== */
-
+/* Colours - edit these to customise your site */
 :root {
-  /* Light theme (default) */
   --color-text: #1a1a1a;
   --color-text-muted: #555;
-  --color-text-subtle: #666;
-
   --color-bg: #fafafa;
   --color-bg-card: #fff;
   --color-bg-header: #2c2c2c;
   --color-bg-footer: #eee;
-
   --color-link: #ea5b0d;
   --color-link-hover: #c94a0a;
-
   --color-border: #ddd;
-
-  --color-header-text: #fff;
-
-  /* Dark theme colours (used by both system preference and manual toggle) */
-  --dark-color-text: #e8e8e8;
-  --dark-color-text-muted: #aaa;
-  --dark-color-text-subtle: #888;
-
-  --dark-color-bg: #1a1a1a;
-  --dark-color-bg-card: #242424;
-  --dark-color-bg-header: #111;
-  --dark-color-bg-footer: #222;
-
-  --dark-color-link: #f4874d;
-  --dark-color-link-hover: #f9a576;
-
-  --dark-color-border: #333;
 }
 
-/* Dark theme - system preference or manual override */
+/* Dark theme */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-text: var(--dark-color-text);
-    --color-text-muted: var(--dark-color-text-muted);
-    --color-text-subtle: var(--dark-color-text-subtle);
-    --color-bg: var(--dark-color-bg);
-    --color-bg-card: var(--dark-color-bg-card);
-    --color-bg-header: var(--dark-color-bg-header);
-    --color-bg-footer: var(--dark-color-bg-footer);
-    --color-link: var(--dark-color-link);
-    --color-link-hover: var(--dark-color-link-hover);
-    --color-border: var(--dark-color-border);
+    --color-text: #e8e8e8;
+    --color-text-muted: #aaa;
+    --color-bg: #1a1a1a;
+    --color-bg-card: #242424;
+    --color-bg-header: #111;
+    --color-bg-footer: #222;
+    --color-link: #f4874d;
+    --color-link-hover: #f9a576;
+    --color-border: #333;
   }
 }
-
 :root[data-theme="dark"] {
-  --color-text: var(--dark-color-text);
-  --color-text-muted: var(--dark-color-text-muted);
-  --color-text-subtle: var(--dark-color-text-subtle);
-  --color-bg: var(--dark-color-bg);
-  --color-bg-card: var(--dark-color-bg-card);
-  --color-bg-header: var(--dark-color-bg-header);
-  --color-bg-footer: var(--dark-color-bg-footer);
-  --color-link: var(--dark-color-link);
-  --color-link-hover: var(--dark-color-link-hover);
-  --color-border: var(--dark-color-border);
+  --color-text: #e8e8e8;
+  --color-text-muted: #aaa;
+  --color-bg: #1a1a1a;
+  --color-bg-card: #242424;
+  --color-bg-header: #111;
+  --color-bg-footer: #222;
+  --color-link: #f4874d;
+  --color-link-hover: #f9a576;
+  --color-border: #333;
 }
 
-/* ==========================================================================
-   Base & Reset
-   ========================================================================== */
-
+/* Base */
 *,
 *::before,
 *::after {
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   font-family:
     system-ui,
     -apple-system,
-    BlinkMacSystemFont,
-    "Segoe UI",
-    Roboto,
     sans-serif;
   font-size: 1rem;
   line-height: 1.6;
   color: var(--color-text);
   background: var(--color-bg);
 }
-
 a {
   color: var(--color-link);
 }
-
 a:hover {
   color: var(--color-link-hover);
 }
 
-/* ==========================================================================
-   Skip Link (Accessibility)
-   ========================================================================== */
-
+/* Skip link */
 .skip-link {
   position: absolute;
   top: -100%;
@@ -117,62 +72,46 @@ a:hover {
   text-decoration: none;
   z-index: 100;
 }
-
 .skip-link:focus {
   top: 0;
 }
 
-/* ==========================================================================
-   Header
-   ========================================================================== */
-
+/* Header */
 .header {
   background: var(--color-bg-header);
-  color: var(--color-header-text);
+  color: #fff;
   padding: 2rem 0;
 }
-
 .header__inner {
   max-width: 48rem;
   margin: 0 auto;
   padding: 0 1rem;
   display: flex;
   gap: 1.5rem;
-  align-items: stretch;
+  align-items: center;
   flex-wrap: wrap;
 }
-
 .header__logo {
   max-height: 8rem;
   width: auto;
   object-fit: contain;
-  align-self: center;
 }
-
 .header__text {
   flex: 1;
   min-width: 200px;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
 }
-
 .header__title {
   margin: 0;
   font-size: 1.75rem;
   font-weight: 700;
 }
-
 .header__summary {
   margin: 0.25rem 0 0;
   opacity: 0.9;
   font-size: 1.1rem;
 }
 
-/* ==========================================================================
-   Social Links
-   ========================================================================== */
-
+/* Social links */
 .social-links {
   display: flex;
   gap: 0.75rem;
@@ -181,182 +120,121 @@ a:hover {
   list-style: none;
   padding: 0;
 }
-
 .social-link {
   display: inline-flex;
   align-items: center;
   gap: 0.35rem;
-  color: var(--color-header-text);
+  color: inherit;
   text-decoration: none;
   opacity: 0.85;
-  transition: opacity 0.15s;
 }
-
-.social-link:hover,
-.social-link:focus {
+.social-link:hover {
   opacity: 1;
-  color: var(--color-header-text);
+  color: inherit;
 }
-
-.social-link svg {
-  flex-shrink: 0;
-}
-
 .social-link__label {
   font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   Main Content
-   ========================================================================== */
-
+/* Main */
 .main {
   max-width: 48rem;
   margin: 0 auto;
   padding: 2rem 1rem;
 }
 
-/* ==========================================================================
-   About Section
-   ========================================================================== */
-
+/* Sections */
 .about {
   margin-bottom: 2.5rem;
 }
-
-.about__title {
+.about__title,
+.events__title {
   font-size: 1.75rem;
   font-weight: 600;
   margin: 0 0 1rem;
-  color: var(--color-text);
 }
-
-.about__content {
-  color: var(--color-text);
-}
-
 .about__content p {
   margin: 0 0 1rem;
 }
-
 .about__content p:last-child {
   margin-bottom: 0;
 }
 
-/* ==========================================================================
-   Events Section
-   ========================================================================== */
-
 .events {
   margin-bottom: 2rem;
 }
-
-.events__title {
-  font-size: 1.75rem;
-  font-weight: 600;
-  margin: 0 0 1.25rem;
-  color: var(--color-text);
-}
-
 .events__list {
   list-style: none;
   padding: 0;
   margin: 0;
 }
-
 .events__empty {
-  color: var(--color-text-subtle);
+  color: var(--color-text-muted);
   font-style: italic;
 }
 
-/* ==========================================================================
-   Event Card
-   ========================================================================== */
-
+/* Event cards */
 .event {
   margin-bottom: 1rem;
 }
-
 .event:last-child {
   margin-bottom: 0;
 }
-
 .event__inner {
-  display: block;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border);
   border-radius: 0.5rem;
   padding: 1.25rem;
 }
-
 .event__title {
   font-size: 1.25rem;
   font-weight: 600;
   margin: 0 0 0.5rem;
-  color: var(--color-text);
 }
-
 .event__time {
   margin: 0 0 0.5rem;
   color: var(--color-text-muted);
   font-weight: 500;
 }
-
 .event__summary {
   margin: 0 0 0.5rem;
-  color: var(--color-text);
 }
-
 .event__description {
   margin: 0 0 0.5rem;
-  color: var(--color-text);
   font-size: 0.9rem;
   line-height: 1.5;
 }
-
 .event__location {
   margin: 0 0 0.25rem;
-  color: var(--color-text-subtle);
+  color: var(--color-text-muted);
   font-size: 0.9rem;
 }
-
 .event__link {
   margin: 0.5rem 0 0;
   font-size: 0.9rem;
 }
 
-/* ==========================================================================
-   Footer
-   ========================================================================== */
-
+/* Footer */
 .footer {
   background: var(--color-bg-footer);
   padding: 1.5rem 1rem;
   text-align: center;
   margin-top: 2rem;
 }
-
-.footer__text {
+.footer__text,
+.footer__links {
   margin: 0 0 0.5rem;
   color: var(--color-text-muted);
   font-size: 0.875rem;
 }
 
-.footer__links {
-  margin: 0;
-  font-size: 0.875rem;
-}
-
-/* ==========================================================================
-   Theme Toggle
-   ========================================================================== */
-
+/* Theme toggle */
 .theme-toggle {
   position: fixed;
   bottom: 1rem;
   right: 1rem;
   background: var(--color-bg-header);
-  color: var(--color-header-text);
+  color: #fff;
   border: none;
   border-radius: 50%;
   width: 2.5rem;
@@ -366,51 +244,33 @@ a:hover {
   align-items: center;
   justify-content: center;
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-  transition: transform 0.15s ease;
-  z-index: 50;
 }
-
 .theme-toggle:hover {
   transform: scale(1.1);
 }
-
 .theme-toggle svg {
   width: 1.25rem;
   height: 1.25rem;
 }
-
-/* Icon visibility controlled by JS adding .is-dark class to button */
-.theme-toggle__icon--light,
-.theme-toggle__icon--dark {
+.theme-toggle__icon--light {
   display: none;
 }
-
-.theme-toggle__icon--dark {
-  display: block;
-}
-
 .theme-toggle.is-dark .theme-toggle__icon--dark {
   display: none;
 }
-
 .theme-toggle.is-dark .theme-toggle__icon--light {
   display: block;
 }
 
-/* ==========================================================================
-   Responsive
-   ========================================================================== */
-
+/* Mobile */
 @media (max-width: 600px) {
   .header__inner {
     flex-direction: column;
     text-align: center;
   }
-
   .header__logo {
     max-height: 4rem;
   }
-
   .social-links {
     justify-content: center;
   }
