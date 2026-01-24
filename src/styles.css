@@ -23,44 +23,47 @@
   --color-border: #ddd;
 
   --color-header-text: #fff;
+
+  /* Dark theme colours (used by both system preference and manual toggle) */
+  --dark-color-text: #e8e8e8;
+  --dark-color-text-muted: #aaa;
+  --dark-color-text-subtle: #888;
+
+  --dark-color-bg: #1a1a1a;
+  --dark-color-bg-header: #111;
+  --dark-color-bg-footer: #222;
+
+  --dark-color-link: #6db3f2;
+  --dark-color-link-hover: #9dcbf7;
+
+  --dark-color-border: #333;
 }
 
-/* Dark theme - follows system preference */
+/* Dark theme - system preference or manual override */
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
-    --color-text: #e8e8e8;
-    --color-text-muted: #aaa;
-    --color-text-subtle: #888;
-
-    --color-bg: #1a1a1a;
-    --color-bg-header: #111;
-    --color-bg-footer: #222;
-
-    --color-link: #6db3f2;
-    --color-link-hover: #9dcbf7;
-
-    --color-border: #333;
-
-    --color-header-text: #fff;
+    --color-text: var(--dark-color-text);
+    --color-text-muted: var(--dark-color-text-muted);
+    --color-text-subtle: var(--dark-color-text-subtle);
+    --color-bg: var(--dark-color-bg);
+    --color-bg-header: var(--dark-color-bg-header);
+    --color-bg-footer: var(--dark-color-bg-footer);
+    --color-link: var(--dark-color-link);
+    --color-link-hover: var(--dark-color-link-hover);
+    --color-border: var(--dark-color-border);
   }
 }
 
-/* Manual dark theme override */
 :root[data-theme="dark"] {
-  --color-text: #e8e8e8;
-  --color-text-muted: #aaa;
-  --color-text-subtle: #888;
-
-  --color-bg: #1a1a1a;
-  --color-bg-header: #111;
-  --color-bg-footer: #222;
-
-  --color-link: #6db3f2;
-  --color-link-hover: #9dcbf7;
-
-  --color-border: #333;
-
-  --color-header-text: #fff;
+  --color-text: var(--dark-color-text);
+  --color-text-muted: var(--dark-color-text-muted);
+  --color-text-subtle: var(--dark-color-text-subtle);
+  --color-bg: var(--dark-color-bg);
+  --color-bg-header: var(--dark-color-bg-header);
+  --color-bg-footer: var(--dark-color-bg-footer);
+  --color-link: var(--dark-color-link);
+  --color-link-hover: var(--dark-color-link-hover);
+  --color-border: var(--dark-color-border);
 }
 
 /* ==========================================================================
