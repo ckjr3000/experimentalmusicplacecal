@@ -379,38 +379,22 @@ a:hover {
   height: 1.25rem;
 }
 
+/* Icon visibility controlled by JS adding .is-dark class to button */
 .theme-toggle__icon--light,
 .theme-toggle__icon--dark {
   display: none;
 }
 
-/* Show sun icon in dark mode (click to go light) */
-:root[data-theme="dark"] .theme-toggle__icon--light,
-:root:not([data-theme="light"]) .theme-toggle__icon--light {
+.theme-toggle__icon--dark {
   display: block;
 }
 
-:root[data-theme="light"] .theme-toggle__icon--dark,
-:root:not([data-theme]) .theme-toggle__icon--dark {
+.theme-toggle.is-dark .theme-toggle__icon--dark {
+  display: none;
+}
+
+.theme-toggle.is-dark .theme-toggle__icon--light {
   display: block;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .theme-toggle__icon--dark {
-    display: none;
-  }
-  :root:not([data-theme="light"]) .theme-toggle__icon--light {
-    display: block;
-  }
-}
-
-@media (prefers-color-scheme: light) {
-  :root:not([data-theme="dark"]) .theme-toggle__icon--light {
-    display: none;
-  }
-  :root:not([data-theme="dark"]) .theme-toggle__icon--dark {
-    display: block;
-  }
 }
 
 /* ==========================================================================
