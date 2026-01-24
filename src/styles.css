@@ -129,12 +129,13 @@ a:hover {
 .header {
   background: var(--color-bg-header);
   color: var(--color-header-text);
-  padding: 2rem 1rem;
+  padding: 2rem 0;
 }
 
 .header__inner {
   max-width: 48rem;
   margin: 0 auto;
+  padding: 0 1rem;
   display: flex;
   gap: 1.5rem;
   align-items: stretch;
