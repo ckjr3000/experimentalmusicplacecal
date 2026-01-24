@@ -67,11 +67,51 @@ Edit `config.json` to customise your site:
 
 ## Customisation
 
+### Project structure
+
+```
+src/
+├── template.html   # HTML structure (Mustache-style)
+├── styles.css      # All styles with CSS variables
+├── icons.js        # SVG icons from Lucide
+├── html.js         # Template renderer
+└── api.js          # PlaceCal API client
+```
+
+### Colours
+
+Edit the CSS custom properties at the top of `src/styles.css`:
+
+```css
+:root {
+  /* Text colours */
+  --color-text: #1a1a1a;
+  --color-text-muted: #555;
+  --color-text-subtle: #666;
+
+  /* Background colours */
+  --color-bg: #fafafa;
+  --color-bg-header: #2c2c2c;
+  --color-bg-footer: #eee;
+
+  /* Link colours */
+  --color-link: #0066cc;
+  --color-link-hover: #004499;
+
+  /* Border colours */
+  --color-border: #ddd;
+
+  /* Header text (on dark background) */
+  --color-header-text: #fff;
+}
+```
+
 ### Styling
 
-Edit `src/html.js` to change the CSS. The styles use [BEM naming](http://getbem.com/naming/), making them easy to understand and modify:
+The rest of `src/styles.css` uses [BEM naming](http://getbem.com/naming/):
 
 - `.header` - Top banner with logo and partner name
+- `.social-links` - Social media icon links
 - `.about` - Partner description section
 - `.events` - Events listing section
 - `.event` - Individual event cards
@@ -79,18 +119,40 @@ Edit `src/html.js` to change the CSS. The styles use [BEM naming](http://getbem.
 
 ### HTML structure
 
-The HTML template is also in `src/html.js`. Key accessibility features:
+Edit `src/template.html` to change the page structure. It uses Mustache-style syntax:
+
+- `{{variable}}` - escaped text
+- `{{{variable}}}` - unescaped HTML
+- `{{#section}}...{{/section}}` - conditional block / loop
+- `{{^section}}...{{/section}}` - inverted (if empty/false)
+
+### Icons
+
+Social media icons are in `src/icons.js`, sourced from [Lucide](https://lucide.dev). Available icons:
+
+- `website`, `instagram`, `facebook`, `twitter`
+- `youtube`, `linkedin`, `mastodon`, `bluesky`
+- `email`, `phone`
+
+To add more, copy the SVG from Lucide and add it to the `icons` object.
+
+## Accessibility
+
+The generated HTML includes:
+
 - Skip link for keyboard users
-- Semantic HTML5 elements (`<main>`, `<article>`, `<time>`)
+- Semantic HTML5 elements (`<main>`, `<article>`, `<time>`, `<nav>`)
 - Proper heading hierarchy
+- `aria-label` on icon links
+- `aria-hidden` on decorative SVGs
 - High contrast colours
 
 ## How it works
 
 1. **Fetches data** from the PlaceCal GraphQL API
 2. **Filters events** to show only those from your partner
-3. **Generates HTML** with inline CSS (no external dependencies)
-4. **Outputs** a single `dist/index.html` file
+3. **Renders template** with partner data and events
+4. **Outputs** a single `dist/index.html` file with inline CSS
 
 No npm packages are used - just Node.js 18+ built-in features.
 
@@ -105,4 +167,6 @@ MIT - see [LICENSE](LICENSE)
 
 ## Credits
 
-Built by [Geeks for Social Change](https://gfsc.studio). Data provided by [PlaceCal](https://placecal.org).
+- Built by [Geeks for Social Change](https://gfsc.studio)
+- Data provided by [PlaceCal](https://placecal.org)
+- Icons by [Lucide](https://lucide.dev)
