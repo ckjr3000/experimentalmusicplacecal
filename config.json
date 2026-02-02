@@ -1,11 +1,11 @@
 {
   "api": {
     "endpoint": "https://placecal.org/api/v1/graphql",
-    "partnerId": "244"
+    "partnerId": "455"
   },
   "site": {
-    "title": "Geeks for Social Change",
-    "description": "Information and upcoming events from Geeks for Social Change",
+    "title": "Experimental Music - Northern England",
+    "description": "A centralised listings site for experimental music in the north.",
     "language": "en-GB"
   },
   "events": {
